@@ -1,4 +1,8 @@
 Ragafied::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   mount StripeEvent::Engine => '/stripe'
   get "content/gold"
   get "content/silver"
