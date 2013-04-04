@@ -4,9 +4,7 @@ Ragafied::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   mount StripeEvent::Engine => '/stripe'
-  get "content/gold"
-  get "content/silver"
-  get "content/platinum"
+  get "content/member"
   authenticated :user do
     root :to => 'home#index'
   end
