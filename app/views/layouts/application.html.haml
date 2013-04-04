@@ -6,13 +6,16 @@
       %meta{:content => content_for?(:description) ? yield(:description) : "Ragafied", :name => "description"}
         = stylesheet_link_tag "application", :media => "all"
         = javascript_include_tag "application"
+        / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/bootstrap.min.js"
+        / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/ddsmoothmenu-min.js"
+        / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/jquery.dcjqaccordion.2.7.min.js"
+        / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/scripts.js"
+
+
         = csrf_meta_tags
         = yield(:head)
   %body{:class => "#{controller_name} #{action_name}"}
-    .navbar.navbar-fixed-top
-      %nav.navbar-inner
-        .container
-          = render 'layouts/navigation'
+    = render 'layouts/navigation'
     #main{:role => "main"}
       .container
         .content

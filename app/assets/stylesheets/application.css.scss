@@ -11,3 +11,15 @@
  *= require_self
  *= require_tree .
 */
+
+body, body * {
+  letter-spacing: 2px
+}
+
+#main_menu li.logo a {
+  font-size: 32px;
+}
+
+nav#main_menu {
+  float: left
+}

@@ -1,0 +1,115 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang="en" dir="ltr"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en" dir="ltr"> <![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js" lang="en" dir="ltr"><!--<![endif]-->
+
+<head>
+<title>Crisp Bootstrap Theme</title>
+
+<!-- Meta Data ================ -->
+<meta charset="UTF-8" />
+<meta name="description" content="Seven home pages, six sliders, three headers, responsive, fluid html5 theme" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<style>
+@import url('http://fonts.googleapis.com/css?family=Raleway:300');
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { font-family: "Raleway",Sans-Serif }
+body,
+html {
+    height: 100%;
+    color: #fff;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+a img { border: 0 }
+h2 {
+    margin: 0 0 3% 0;
+    font-weight: normal;
+    font-size: 280%;
+}
+div.left h2 { color: #7ad3e9 }
+div.right h2 { color: #e3bf71 }
+div.left,
+div.right {
+    position: relative;
+    z-index: 2;
+    width: 46%;
+    padding: 10% 2% 0 2%;
+    text-align: center;
+}
+div.left { float: left }
+div.right { float: right }
+span.right,
+span.left {
+    position: fixed;
+    display: block;
+    height: 100%;
+    width: 50%;
+}
+span.left {
+    top: 0;
+    left: 0;
+    background: #2e788a;
+}
+span.right {
+    top: 0;
+    right: 0;
+    background: #b13a04;
+}
+img {
+    max-width: 100%;
+    -webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.3);
+}
+a img:hover {
+    -ms-filter: "alpha(opacity=50)";
+    filter: alpha(opacity=50);
+    -moz-opacity: .5;
+    -khtml-opacity: .5;
+    opacity: .5;
+}
+
+.lt-ie9 body {background:#333;}
+
+.lt-ie9 span.right, .lt-ie9 span.left {display:none;}
+
+
+@media only screen and (max-width: 600px) {
+h2 {font-size:120%;}
+}
+
+</style>
+
+<!-- Add to Head after Style sheet http://modernizr.com/docs/#installing  ================ -->
+<script src="Crisp-cool/assets/js/modernizr.custom.87724.js"></script><!-- js multiple backgrounds svg background size -->
+
+
+</head>
+<body>
+
+<!--******** DEMO ONLY *********-->
+<span class="left"></span>
+<span class="right"></span>
+
+<div class="left">
+<h2>Cool</h2>
+<a href="Crisp-cool/index.html"><img src="demo/ss-cool.png" alt="crisp cool theme for bootstrap" /></a>
+</div>
+
+<div class="right">
+<h2>Warm</h2>
+<a href="Crisp-warm/index.html"><img src="demo/ss-warm.png" alt="crisp warm theme for bootstrap" /></a>
+</div>	
+</body>
+</html>
