@@ -1,0 +1,72 @@
+diff --git app/views/user_mailer/expire_email.html.haml app/views/user_mailer/expire_email.html.haml
+index 6a83fc5..9f8cb2d 100644
+--- app/views/user_mailer/expire_email.html.haml
++++ app/views/user_mailer/expire_email.html.haml
+@@ -8,4 +8,4 @@
+       Your subscription has been cancelled.
+     %p
+       We are sorry to see you go. We'd love to have you back.
+-      Visit example.com anytime to create a new subscription.
++      Visit ragafied.com anytime to create a new subscription.
+diff --git app/views/user_mailer/expire_email.text.haml app/views/user_mailer/expire_email.text.haml
+index 824f1a8..b912d09 100644
+--- app/views/user_mailer/expire_email.text.haml
++++ app/views/user_mailer/expire_email.text.haml
+@@ -3,4 +3,4 @@ Subscription Cancelled
+ Your subscription has been cancelled.
+ 
+ We are sorry to see you go. We'd love to have you back.
+-Visit example.com anytime to create a new subscription.
++Visit ragafied.com anytime to create a new subscription.
+diff --git config/routes.rb config/routes.rb
+index 844a9fc..b1fc5e4 100644
+--- config/routes.rb
++++ config/routes.rb
+@@ -14,5 +14,5 @@ Ragafied::Application.routes.draw do
+     put 'update_plan', :to => 'registrations#update_plan'
+     put 'update_card', :to => 'registrations#update_card'
+   end
+-  resources :users
++  resources :users, :lessons
+ end
+\ No newline at end of file
+diff --git db/schema.rb db/schema.rb
+index e48d7cb..dd73689 100644
+--- db/schema.rb
++++ db/schema.rb
+@@ -11,7 +11,7 @@
+ #
+ # It's strongly recommended to check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(:version => 20130403181244) do
++ActiveRecord::Schema.define(:version => 20130404113228) do
+ 
+   create_table "active_admin_comments", :force => true do |t|
+     t.string   "resource_id",   :null => false
+@@ -46,6 +46,26 @@ ActiveRecord::Schema.define(:version => 20130403181244) do
+   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
+ 
++  create_table "gurus", :force => true do |t|
++    t.string   "name"
++    t.datetime "created_at", :null => false
++    t.datetime "updated_at", :null => false
++  end
++
++  create_table "lessons", :force => true do |t|
++    t.integer  "raga_id"
++    t.integer  "guru_id"
++    t.text     "phrases"
++    t.datetime "created_at", :null => false
++    t.datetime "updated_at", :null => false
++  end
++
++  create_table "ragas", :force => true do |t|
++    t.string   "name"
++    t.datetime "created_at", :null => false
++    t.datetime "updated_at", :null => false
++  end
++
+   create_table "roles", :force => true do |t|
+     t.string   "name"
+     t.integer  "resource_id"

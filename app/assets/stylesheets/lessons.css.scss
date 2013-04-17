@@ -1,0 +1,108 @@
+// Place all the styles related to the lessons controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.lessons.show {
+  #container {
+    font-family: Impact, Futura-CondensedExtraBold;
+    width: 380px;
+    height: 512px;
+    margin: auto;
+    zoom: 1;
+    position: relative;
+  }
+
+  #container * {
+    position: absolute;
+    transform:scale(1,1.2); /* W3C */
+    -webkit-transform:scale(1,1.2); /* Safari and Chrome */
+    -moz-transform:scale(1,1.2); /* Firefox */
+    -ms-transform:scale(1,1.2); /* IE 9 */
+    -o-transform:scale(1,1.2); /* Opera */
+  }
+
+  .logo {
+    font-size: 72px;
+    color: #e3dbde;
+    top: 10px;
+    left: 10px;
+  }
+
+  #raga, #raga-name {
+    font-size: 40px;
+    color: #688d00;
+    right: 10px;
+  }
+
+  #raga {
+    top: 50px;
+    right: 12px;
+  }
+
+  #raga-name {
+    top: 91px;
+  }
+
+  #phrase-container {
+    top: 150px;
+    height: 100px;
+    left: 0;
+    right: 0;
+  }
+
+  #phrase-container * {
+    position: relative;
+    text-align: center;
+  }
+
+  #phrase-title {
+    color: #e3dbde;
+    font-size: 22px;
+    top: 24px;
+  }
+
+  #current-phrase-progress {
+    position: absolute;
+    top: 20px;
+    height: 2px;
+    left: 0;
+    right: 0;
+    background: #fcf8e5;
+    display: none;
+  }
+
+  #current-phrase {
+    font-size: 72px;
+    color: black;
+    margin: auto;
+  }
+
+  #total-phrases {
+    font-size: 33px;
+    color: #e3dbde;
+    top: -24px;
+  }
+
+  #teacher, #student {
+    font-size: 32px;
+    color: #ab0000;
+    top: 374px;
+    text-align: center;
+    left: 0;
+    right: 0;
+  }
+
+  #student {
+    display: none;
+  }
+
+  #info {
+    top: 500px;
+  }
+
+  #info, #info * {
+    font-size: 10px;
+    font-family: Verdana;
+    color: #e3dbde;
+  }
+}
