@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404113228) do
+ActiveRecord::Schema.define(:version => 20130417232717) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -56,8 +56,20 @@ ActiveRecord::Schema.define(:version => 20130404113228) do
     t.integer  "raga_id"
     t.integer  "guru_id"
     t.text     "phrases"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "main_audio_file_name"
+    t.string   "main_audio_content_type"
+    t.integer  "main_audio_file_size"
+    t.datetime "main_audio_updated_at"
+    t.string   "tanpura_audio_file_name"
+    t.string   "tanpura_audio_content_type"
+    t.integer  "tanpura_audio_file_size"
+    t.datetime "tanpura_audio_updated_at"
+    t.string   "annotation_audio_file_name"
+    t.string   "annotation_audio_content_type"
+    t.integer  "annotation_audio_file_size"
+    t.datetime "annotation_audio_updated_at"
   end
 
   create_table "ragas", :force => true do |t|
