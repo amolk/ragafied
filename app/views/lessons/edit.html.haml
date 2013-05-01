@@ -1,0 +1,11 @@
+%h3.short_headline
+  raga #{@lesson.raga.name} by #{@lesson.guru.name}
+
+.row
+  .span7
+    #lesson-editor
+  .span5
+    #lesson-container
+
+%script
+  var lesson = #{@lesson.to_json(:only => [], :methods => [:raga_name, :guru_name, :audio_files, :lesson_composition]).html_safe}

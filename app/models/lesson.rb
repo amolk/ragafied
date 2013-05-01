@@ -1,12 +1,14 @@
 class Lesson < ActiveRecord::Base
-  attr_accessible :phrases, :raga_id, :guru_id, :main_audio, :tanpura_audio, :annotation_audio
+  attr_accessible :composition, :raga_id, :guru_id, :audios, :audios_attributes
 
   belongs_to :raga
   belongs_to :guru
+  has_many :audios
+  accepts_nested_attributes_for :audios
 
-  has_attached_file :main_audio
-  has_attached_file :tanpura_audio
-  has_attached_file :annotation_audio
+  def lesson_composition
+    JSON.parse(read_attribute(:composition))
+  end
 
   def raga_name
     raga.name
@@ -16,15 +18,9 @@ class Lesson < ActiveRecord::Base
     guru.name
   end
 
-  def main_audio_url
-    main_audio.url
-  end
-
-  def tanpura_audio_url
-    tanpura_audio.url
-  end
-
-  def annotation_audio_url
-    annotation_audio.url
+  def audio_files
+    info = {}
+    audios.each {|audio| info[audio.title] = {url: audio.file.url}}
+    info
   end
 end

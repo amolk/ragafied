@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417232717) do
+ActiveRecord::Schema.define(:version => 20130426202126) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(:version => 20130417232717) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
+  create_table "audios", :force => true do |t|
+    t.string   "title"
+    t.integer  "lesson_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
   create_table "gurus", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -55,21 +66,9 @@ ActiveRecord::Schema.define(:version => 20130417232717) do
   create_table "lessons", :force => true do |t|
     t.integer  "raga_id"
     t.integer  "guru_id"
-    t.text     "phrases"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.string   "main_audio_file_name"
-    t.string   "main_audio_content_type"
-    t.integer  "main_audio_file_size"
-    t.datetime "main_audio_updated_at"
-    t.string   "tanpura_audio_file_name"
-    t.string   "tanpura_audio_content_type"
-    t.integer  "tanpura_audio_file_size"
-    t.datetime "tanpura_audio_updated_at"
-    t.string   "annotation_audio_file_name"
-    t.string   "annotation_audio_content_type"
-    t.integer  "annotation_audio_file_size"
-    t.datetime "annotation_audio_updated_at"
+    t.text     "composition"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "ragas", :force => true do |t|

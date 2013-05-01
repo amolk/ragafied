@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require utils
+//= require lessons
+//= require lesson_editor
 //= require_tree .

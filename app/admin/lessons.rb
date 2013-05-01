@@ -3,10 +3,12 @@ ActiveAdmin.register Lesson do
     f.inputs  do
       f.input :raga
       f.input :guru
-      f.input :phrases
-      f.input :main_audio, :as => :file
-      f.input :tanpura_audio, :as => :file
-      f.input :annotation_audio, :as => :file
+      f.input :composition
+      f.has_many :audios do |ff|
+        ff.input :title
+        ff.input :file, as: :file
+        ff.input :_destroy, as: :boolean
+      end 
     end            
     f.buttons
   end  
