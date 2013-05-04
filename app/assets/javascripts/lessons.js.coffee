@@ -121,6 +121,41 @@ Singer =
   guru: 0
   student: 1
 
+class AccessoryMedia
+  @instances = {}
+  @lookupMedia: (prefix, length, lesson) ->
+    @instances[prefix] ?= new AccessoryMedia prefix, lesson
+    @instances[prefix].lookupMedia length
+
+  constructor: (@prefix, @lesson) ->
+    @prefix = @prefix + '-'
+    mediaTitles = Object.keys(@lesson.medias)
+    
+    @medias = []
+    @lengths = []
+
+    for title in mediaTitles
+      if title.beginsWith(@prefix)
+        @medias.push @lesson.medias[title]
+        @lengths.push parseFloat(title.substring(prefix.length+1))
+
+  lookupMedia: (length) ->
+    minDiff = 999999
+    minDiffIndex = -1
+
+    for l, i in @lengths
+      diff = Math.abs(l - length)
+      if minDiff > diff
+        minDiff = diff
+        minDiffIndex = i
+
+    if minDiffIndex == -1
+      console.log("Could not find accessory media for length #{length}")
+      return null
+    else
+      console.log("Using accessory media with length #{@lengths[minDiffIndex]} for requested length #{length}, diff #{minDiff}")
+      return @medias[minDiffIndex]
+
 class Phrase
   constructor: (@index, @info, @phrases) ->
     @start = @info[0]
@@ -134,6 +169,14 @@ class Phrase
 
   setSinger: (@_singer) ->
     console.log("singer = " + @_singer)
+
+  getAccessoryMedia: ->
+    return @accessoryMedia if @accessoryMedia
+    if @config.a
+      @accessoryMedia ?= AccessoryMedia.lookupMedia @config.a, (@end-@start), @phrases.lesson
+      return @accessoryMedia
+    else
+      return null
 
   setCurrentTime: (currentTime) ->
 
@@ -153,7 +196,15 @@ class Phrase
             console.log("jump received")
             @setSinger Singer.student
             if @config.a
-              @phrases.lesson.medias[@config.a].play()
+              m = @getAccessoryMedia()
+              
+              if m
+                m.mediaElement.pause()
+                m.mediaElement.currentTime = 0
+                m.mediaElement.play()
+              else
+                alert("Invalid accessory media prefix #{@config.a}")
+
             @phrases.setCurrentTime(@start)
             @phrases.setStudentVolume()
             @jumpScheduled = false
@@ -189,14 +240,17 @@ class Phrase
       else
         @getSinger() == Singer.guru
       @phrases.mediaElement.play()
-      @phrases.lesson.medias[@config.a].mediaElement.play() if @config.a
+      @getAccessoryMedia().mediaElement.play() if @getAccessoryMedia()
     else
       @phrases.setStudentVolume()
       @phrases.mediaElement.pause()
-      @phrases.lesson.medias[@config.a].mediaElement.pause() if @config.a
+      @getAccessoryMedia().mediaElement.pause() if @getAccessoryMedia()
 
   reset: ->
-    @phrases.lesson.medias[@config.a].mediaElement.stop() if @config.a
+    if @getAccessoryMedia()
+      @getAccessoryMedia().mediaElement.pause() 
+      @getAccessoryMedia().mediaElement.currentTime = 0
+
     @jumpScheduled = false
     @setSinger Singer.guru
     @phrases.setGuruVolume()

@@ -6,7 +6,7 @@
  * Licensed under the MIT license.
  * http://handsontable.com/
  *
- * Date: Fri May 03 2013 11:21:18 GMT-0700 (PDT)
+ * Date: Sat May 04 2013 11:26:23 GMT-0700 (PDT)
  */
 /*jslint white: true, browser: true, plusplus: true, indent: 4, maxerr: 50 */
 
@@ -1130,7 +1130,7 @@ Handsontable.Core = function (rootElement, settings) {
                 var data = self.getDataAtCell(sel[0], sel[1])
                 var value = parseFloat(data)
                 if (value != NaN) {
-                  value = value + 0.05
+                  value = value + (event.ctrlKey ? 0.01 : 0.05)
                   self.setDataAtCell(sel[0], sel[1], value)
                 } 
               }
@@ -1190,7 +1190,7 @@ Handsontable.Core = function (rootElement, settings) {
                 var data = self.getDataAtCell(sel[0], sel[1])
                 var value = parseFloat(data)
                 if (value != NaN) {
-                  value = value - 0.05
+                  value = value - (event.ctrlKey ? 0.01 : 0.05)
                   if (value < 0) value = 0
                   self.setDataAtCell(sel[0], sel[1], value)
                 } 
