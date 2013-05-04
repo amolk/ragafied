@@ -41,3 +41,4 @@ gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem 'activeadmin'
 gem "meta_search",    '>= 1.1.0.pre'
 gem "paperclip", "~> 3.0"
+gem 'aws-sdk'
