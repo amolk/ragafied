@@ -4,8 +4,24 @@
 .row
   .span7
     #lesson-editor
+      %p
+        Press and hold T key for phrase duration to create new phrase
+      %p
+
+        .btn.btn-danger.save
+          Save this lesson
+          %i.icon-edit
+
+        .btn.send-data-to-player
+          Send data to player
+          %i.icon-arrow-right
+
+      .dataTable
   .span5
     #lesson-container
 
 %script
   var lesson = #{@lesson.to_json(:only => [], :methods => [:raga_name, :guru_name, :audio_files, :lesson_composition]).html_safe}
+
+= form_for @lesson, :remote => true do |f|
+  = f.hidden_field :composition

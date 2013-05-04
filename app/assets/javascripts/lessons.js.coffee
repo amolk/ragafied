@@ -98,7 +98,7 @@ class Audio extends Media
       return if @ended      
       @playNext()
 
-    @lesson.medias['tanpura'].setVolume(@config.tanpuraVolume) if @config.tanpuraVolume != null
+    @lesson.medias['tanpura'].setVolume(@config.tanpuraVolume) if @config.tanpuraVolume != null && @lesson.medias['tanpura']
 
   drawInterface: ->
     @container
@@ -183,7 +183,7 @@ class Phrase
 
   playPause: ->
     if @phrases.mediaElement.paused
-      @phrases.lesson.medias['tanpura'].mediaElement.play()
+      @phrases.lesson.medias['tanpura'].mediaElement.play() if @phrases.lesson.medias['tanpura']
       if @getSinger() == Singer.guru
         @phrases.setGuruVolume()
       else
@@ -196,6 +196,7 @@ class Phrase
       @phrases.lesson.medias[@config.a].mediaElement.pause() if @config.a
 
   reset: ->
+    @phrases.lesson.medias[@config.a].mediaElement.stop() if @config.a
     @jumpScheduled = false
     @setSinger Singer.guru
     @phrases.setGuruVolume()
@@ -206,7 +207,11 @@ class Phrases extends Media
   constructor: (@compositionItem, @lesson, @next) ->
     @className = 'Phrases'
     super(@compositionItem, @lesson, @next)
-    @phrases = @compositionItem.phrases
+    @loadPhrases(@compositionItem.phrases)
+    
+
+  loadPhrases: (p) ->
+    @phrases = p
     ps = []
     for p, i in @phrases
       ps.push(new Phrase(i, p, this))
@@ -215,11 +220,11 @@ class Phrases extends Media
 
   setGuruVolume: ->
     @setVolume(@config.guruVolume)
-    @lesson.medias['tanpura'].setVolume(@config.guruTanpuraVolume)
+    @lesson.medias['tanpura'].setVolume(@config.guruTanpuraVolume) if @lesson.medias['tanpura']
 
   setStudentVolume: ->
     @setVolume(@config.studentVolume)
-    @lesson.medias['tanpura'].setVolume(@config.studentTanpuraVolume)
+    @lesson.medias['tanpura'].setVolume(@config.studentTanpuraVolume) if @lesson.medias['tanpura']
 
   getCurrentPhraseIndex: -> @_currentPhraseIndex
   setCurrentPhraseIndex: (@_currentPhraseIndex) -> 
@@ -230,7 +235,7 @@ class Phrases extends Media
       @playNext()
     else
       console.log("currentPhraseIndex = " + @_currentPhraseIndex)
-      @currentPhraseDisplay.text(@_currentPhraseIndex + 1)
+      @currentPhraseDisplay.text(@_currentPhraseIndex + 1) if @currentPhraseDisplay
       @setGuruVolume()
 
   getCurrentPhrase: -> @phrases[@_currentPhraseIndex]
@@ -278,13 +283,13 @@ class Phrases extends Media
       return false
 
     # click anywhere or hit spacebar to play/pause
-    $(document).click => @playPause()
+    # $(document).click => @playPause()
     $(document).bind "keydown", "space", => @playPause()
     $(document).bind "keydown", "l", => 
       @repeat = true
 
   playPause: ->
-    @getCurrentPhrase().playPause() if !@ended
+    @getCurrentPhrase().playPause() if !@ended && @getCurrentPhrase()
 
   play: ->
     super()
@@ -297,13 +302,15 @@ class Phrases extends Media
       @getCurrentPhrase().setCurrentTime(currentTime)
 
   playPhrase: (index) ->
+    return if @phrases.length - 1 < index
     @mediaElement.pause()
-    @getCurrentPhrase().reset()
+    @getCurrentPhrase().reset() if @getCurrentPhrase()
 
     phrase = @phrases[index]
-    @mediaElement.setCurrentTime(phrase.start)
-    @setCurrentPhraseIndex(index)
-    @mediaElement.play()
+    if phrase
+      @mediaElement.setCurrentTime(phrase.start)
+      @setCurrentPhraseIndex(index)
+      @mediaElement.play()
 
 mediaClasses = {
   "Audio": Audio,
@@ -355,7 +362,7 @@ class Lesson
     @innerContainer = $('#lesson-container-inner')
 
 $ ->
-  return unless $('body.lessons.show, body.lessons.edit').length > 0
+  return unless $('body.lessons.show').length > 0
   Lesson.instance = new Lesson(lesson, true)
 
 window.Lesson = Lesson
