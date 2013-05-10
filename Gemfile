@@ -12,7 +12,7 @@ gem "thin", ">= 1.5.0"
 gem "haml-rails", ">= 0.4"
 gem "html2haml", ">= 1.0.1", :group => :development
 gem "rspec-rails", ">= 2.12.2", :group => [:development, :test]
-gem "database_cleaner", ">= 1.0.0.RC1", :group => :test
+gem "database_cleaner", "0.9.1", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test
 gem "cucumber-rails", ">= 1.3.1", :group => :test, :require => false
 gem "launchy", ">= 2.2.0", :group => :test

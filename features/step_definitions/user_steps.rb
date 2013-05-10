@@ -2,7 +2,7 @@
 
 def create_visitor
   @visitor ||= { :name => "Testy McUserton", :email => "example@example.com",
-    :password => "changeme", :password_confirmation => "changeme", :role => "silver" }
+    :password => "changeme", :password_confirmation => "changeme", :role => "member" }
 end
 
 def find_user
@@ -30,7 +30,7 @@ end
 
 def sign_up
   delete_user
-  visit '/users/sign_up/?plan=silver'
+  visit '/users/sign_up/?plan=member'
   fill_in "Name", :with => @visitor[:name]
   fill_in "Email", :with => @visitor[:email]
   fill_in "user_password", :with => @visitor[:password]
@@ -139,8 +139,8 @@ When /^I delete my account$/ do
   page.driver.browser.switch_to.alert.accept
 end
 
-When /^I follow the subscribe for silver path$/ do
-  visit '/users/sign_up/?plan=silver'
+When /^I follow the subscribe for member path$/ do
+  visit '/users/sign_up/?plan=member'
 end
 
 ### THEN ###
@@ -163,8 +163,8 @@ Then /^I should be on the "([^"]*)" page$/ do |path_name|
   current_path.should == send("#{path_name.parameterize('_')}_path")
 end
 
-Then /I should be on the new silver user registration page$/ do
-  current_path_with_args.should == '/users/sign_up/?plan=silver'
+Then /I should be on the new member user registration page$/ do
+  current_path_with_args.should == '/users/sign_up/?plan=member'
 end
 
 Then /^I see an unconfirmed account message$/ do

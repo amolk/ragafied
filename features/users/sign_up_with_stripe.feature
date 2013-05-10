@@ -1,11 +1,11 @@
 Feature: User signs up with stripe
-  Note: you must have stripe setup with silver plan
+  Note: you must have stripe setup with member plan
   for these tests to run correctly.
 
   Background:
     Given: I am on the home page
-    When I follow the subscribe for silver path
-    Then I should see "Silver Subscription Plan"
+    When I follow the subscribe for member path
+    Then I should see "Member Subscription Plan"
 
   @javascript
   Scenario: With valid card data
@@ -19,7 +19,7 @@ Feature: User signs up with stripe
     Then I select "5 - May" as the "month"
     And I select "2015" as the "year"
     When I press "Sign up"
-    Then I should be on the "content silver" page
+    Then I should be on the "users" page
     And I should see a successful sign up message
 
   @javascript
@@ -34,7 +34,7 @@ Feature: User signs up with stripe
     Then I select "1 - January" as the "month"
     And I select "2016" as the "year"
     When I press "Sign up"
-    Then I should be on the new silver user registration page
+    Then I should be on the new member user registration page
     And I should see "Your card number is incorrect"
 
   @javascript
@@ -49,7 +49,7 @@ Feature: User signs up with stripe
     Then I select "10 - October" as the "month"
     And I select "2016" as the "year"
     When I press "Sign up"
-    Then I should be on the new silver user registration page
+    Then I should be on the new member user registration page
     And I should see "Your card's security code is invalid"
 
     @javascript

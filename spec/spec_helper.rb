@@ -9,6 +9,13 @@ require 'rspec/autorun'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+File.open(File.expand_path("../../.env_test", __FILE__)).each do |line|
+  line = line.strip
+  next if line.empty?
+  k,v = line.split('=')
+  ENV[k]=v
+end
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
