@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require utils
-//= require lessons
-//= require lesson_editor
-//= require_tree .
+//= require app/jquery.readyselector
+//= require app/jquery.externalscript
+//= require app/jquery.hotkeys
+//= require app/utils
+//= require app/registrations

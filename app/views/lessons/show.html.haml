@@ -1,3 +1,6 @@
+- content_for :head do
+  = javascript_include_tag "lesson"
+
 %h3.short_headline
   raga #{@lesson.raga.name} by #{@lesson.guru.name}
 
