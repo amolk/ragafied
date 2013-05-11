@@ -7,10 +7,24 @@
   .login-wrapper.clearfix
     .float-right
       = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f|
+        = f.label :email
         .input-prepend
           %span.add-on @
-          = f.input :email, :autofocus => true, :required => true
-        = f.input :password, :required => true
+          = f.input_field :email, :autofocus => true
+        = f.label :password
+        .input-prepend
+          %span.add-on #
+          = f.input_field :password, :required => true
         = f.input :remember_me, :as => :boolean, :wrapper => :inline_checkbox if devise_mapping.rememberable?
-        = f.button :submit, "Sign in", :class => 'btn-primary'
+        = f.button :submit, "Sign in", :class => 'btn-primary btn-large'
       = render "devise/shared/links"
+
+    .float-left
+      %br
+      %ul
+        %li
+          %a{:href => '/auth/facebook'}
+            %img{:src => '/crisp-1.0.4/Crisp-warm/assets/images/sign-in-facebook.png', :alt => 'sign in with facebook'}
+        %li
+          %a{:href => '/auth/twitter'}
+            %img{:src => '/crisp-1.0.4/Crisp-warm/assets/images/sign-in-twitter.png', :alt => 'sign in with twitter'}

@@ -19,3 +19,8 @@ body, body * {
 .navbar .nav>li>a {
   float: left !important;
 }
+
+label.checkbox {
+  display: inline-block;
+  display: inline-table;
+}
