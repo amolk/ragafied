@@ -9,10 +9,27 @@
   = hidden_field_tag 'plan', params[:plan]
   = f.error_notification
   = display_base_errors resource
+  - auth_info = session[:auth_info]
+  - if auth_info
+    - resource[:name] ||= auth_info[:name]
+    - resource[:email] ||= auth_info[:email]
+    - resource[:uid] = auth_info[:uid]
+    - resource[:provider] = auth_info[:provider]
+
+    %h5
+      Hello 
+      %strong>= " " + auth_info[:name]
+      , thank you for signing in through #{auth_info[:provider]}. Please verify your details and complete your payment information below.
+
   = f.input :name, :autofocus => true
   = f.input :email, :required => true
-  = f.input :password, :required => true
-  = f.input :password_confirmation, :required => true
+  = f.hidden_field :uid
+  = f.hidden_field :provider
+
+  - if session[:auth_info].blank?
+    = f.input :password, :required => true
+    = f.input :password_confirmation, :required => true
+
   - if @user.stripe_token
     %p Credit card acceptance is pending.
   - else

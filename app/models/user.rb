@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :stripe_token, :coupon, :provider, :uid
   attr_accessor :stripe_token, :coupon
   before_save :update_stripe
   before_destroy :cancel_subscription
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     return if email.include?(ENV['ADMIN_EMAIL'])
     return if email.include?('@example.com') and not Rails.env.production?
     if customer_id.nil?
-      if !stripe_token.present?
+      if !stripe_token.present? && provider.blank?
         raise "Stripe token not present. Can't create account."
       end
       if coupon.blank?
@@ -65,7 +65,8 @@ class User < ActiveRecord::Base
     logger.error "Stripe Error: " + e.message
     errors.add :base, "#{e.message}."
     self.stripe_token = nil
-    false
+
+    !provider.blank?
   end
   
   def cancel_subscription
@@ -87,5 +88,13 @@ class User < ActiveRecord::Base
     UserMailer.expire_email(self).deliver
     destroy
   end
-  
+
+  def email_required?
+    super && provider.blank?
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
 end

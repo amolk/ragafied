@@ -1,11 +1,20 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def new
-    @plan = params[:plan]
+    @plan = params[:plan] || 'member'
     if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"
       super
+      # raise "hello"
     else
       redirect_to root_path, :notice => 'Please select a subscription plan below.'
+    end
+  end
+
+  def after_sign_up_path_for(resource)
+    if resource.provider.blank?
+      after_sign_in_path_for(resource)
+    else
+      "/auth/#{resource.provider}"
     end
   end
 
