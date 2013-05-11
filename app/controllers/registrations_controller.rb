@@ -4,7 +4,6 @@ class RegistrationsController < Devise::RegistrationsController
     @plan = params[:plan] || 'member'
     if @plan && ENV["ROLES"].include?(@plan) && @plan != "admin"
       super
-      # raise "hello"
     else
       redirect_to root_path, :notice => 'Please select a subscription plan below.'
     end
