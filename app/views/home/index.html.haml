@@ -1,5 +1,75 @@
-#welcome.hero-unit
-  %h3 RAGAFIED: Learn Indian classical singing from the maestros
+#page
+  .hero-unit.center.no-border.no-padding-bottom
+    .container
+      / note the home class on the h1 tag
+      %h1 Learn Indian classical singing from the maestros
+    / close container
+  / close hero-unit
+
+  / begin slider
+  .lemmon-wrap.clearfix
+    #lemmon-slider.lemmon-slider
+      %ul
+        %li
+          %a{:href => "#"}
+            / link to article/post/portfolio entry for the entire image
+            %img{:alt => "", :src => "/content/images/Pandit_Jasraj.jpg"}/
+          / end image link
+          .summary
+            / begin summary
+            %a{:href => "#"}
+              / begin link to article post or portfolio entry for the caption
+            %h3 Pandit Jasraj
+            %p No lessons yet
+            / end link to article post or portfolio entry for the caption
+          / end summary
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Edouard_Manet_010.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Manet
+            %p Categories
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Maler_der_Grabkammer_der_Nefertari_001.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Nefertari
+            %p Categories
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Mona_Lisa_by_Leonardo_da_Vinci_042.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Mona Lisa
+            %p Art
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Sandro_Botticelli_046.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Amplify
+            %p Photography
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Sandro_Botticelli_077.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Botticelli
+            %p Photography
+        %li
+          %a{:href => "portfolio-single.html"}
+            %img{:alt => "", :src => "../demo/lemmon-slider/Vincent_Willem_van_Gogh_101.png"}/
+          .summary
+            %a{:href => "portfolio-single.html"}
+            %h3 Vincent
+            %p Categories
+    .controls
+      %a.prev-page{:href => "#"} Prev Page
+      %a.next-page{:href => "#"} Next Page
+    / / .controls
+  / / end slider
   %p
     The traditional method of learning Indian classical music is by observing and following the Guru. ragafied follows the same method and you get the benefits of learning from the maestros of Indian classical music such as Ustad Bade Ghulam Ali Khan, Pandit Bhimsen Joshi, Ustad Rashid Khan, to name a few.
   %br

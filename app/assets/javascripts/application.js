@@ -12,8 +12,31 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require app/jquery.readyselector
 //= require app/jquery.externalscript
 //= require app/jquery.hotkeys
 //= require app/utils
 //= require app/registrations
+
+// From crisp-1.0.4
+//= require app/crisp-1.0.4/bootstrap.min
+// transitions, tooltips, popover, buttons, modals, alert messages
+//= require app/crisp-1.0.4/ddsmoothmenu-min
+// desktop edge detect menu
+//= require app/crisp-1.0.4/jquery.dcjqaccordion.2.7.min
+// mobile multi-level accordion menu
+//= require app/crisp-1.0.4/jquery.easytabs.min
+// tabs/testimonials
+//= require app/crisp-1.0.4/slide-to-top-accordion-min
+// slide to top accordion toggle
+//= require app/crisp-1.0.4/jquery.easing-1.3.min
+// easing
+//= require app/crisp-1.0.4/jquery.flexslider-min
+// flexslider content slider twitter slider and initializations
+//= require app/crisp-1.0.4/responsive-tables
+// responsive table
+//= require app/crisp-1.0.4/jquery.fitvid
+// responsive videos
+//= require app/crisp-1.0.4/lemmon-slider-min
+// lemmon slider js
+// initialize scripts / custom scripts all pages
+//= require app/crisp-1.0.4/scripts

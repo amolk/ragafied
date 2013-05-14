@@ -8,9 +8,9 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
-*/
+ *= require_self
+ */
 
 body, body * {
   letter-spacing: 2px
@@ -23,4 +23,23 @@ body, body * {
 label.checkbox {
   display: inline-block;
   display: inline-table;
+}
+
+#logo {
+  background: none;
+  margin-top: 34px;
+  padding: 0;
+
+  img {
+    height: auto;
+    width: auto;
+  }
+}
+
+@media print
+{
+    .noPrint
+    {
+        display:none;
+    }
 }

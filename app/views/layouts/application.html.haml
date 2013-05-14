@@ -1,20 +1,20 @@
 !!!
-%html
+= surround "<!--[if lt IE 7]> <html class='no-js lt-ie9 lt-ie8 lt-ie7' lang='en' dir='ltr'> <![endif]--><!--[if IE 7]> <html class='no-js lt-ie9 lt-ie8' lang='en' dir='ltr'> <![endif]--><!--[if IE 8]> <html class='no-js lt-ie9' lang='en' dir='ltr'> <![endif]--><!--[if gt IE 8]><!--><html class='no-js' lang='en' dir='ltr'><!--<![endif]-->".html_safe, "</html>".html_safe do
+
   %head
-    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
     %title= content_for?(:title) ? yield(:title) : "Ragafied"
     %meta{:content => content_for?(:description) ? yield(:description) : "Ragafied", :name => "description"}
-    %meta{:name => "viewport", :content => "width=device-width"}
+    = render 'layouts/icons'
     = stylesheet_link_tag "application", :media => "all"
     = javascript_include_tag "application"
-    / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/bootstrap.min.js"
-    / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/ddsmoothmenu-min.js"
-    / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/jquery.dcjqaccordion.2.7.min.js"
-    / = javascript_include_tag "/crisp-1.0.4/Crisp-warm/assets/js/scripts.js"
-
-
     = csrf_meta_tags
     = yield(:head)
+
+    / Add to Head after Style sheet http://modernizr.com/docs/#installing  ================
+    %script{:src => "assets/js/modernizr.custom.87724.js"}
+
   %body{:class => "#{controller_name} #{action_name}"}
     = render 'layouts/navigation'
     #main{:role => "main"}

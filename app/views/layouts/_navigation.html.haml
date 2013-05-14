@@ -1,14 +1,77 @@
-.navbar
-  .navbar-inner
-    .container
-      %a.brand{:href=>"/"} ragafied
-      %ul.nav.pull-right
+/ begin accesibility skip to nav skip content
+%ul#top.visuallyhidden
+  %li
+    %a{:accesskey => "n", :href => "#nav", :title => "Skip to navigation"} Skip to navigation
+  %li
+    %a{:accesskey => "c", :href => "#page", :title => "Skip to content"} Skip to content
+/ end /.visuallyhidden accesibility
+/ mobile navigation trigger
+%h5.mobile_nav
+  %a{:href => "javascript:void(0)"}
+    \
+    %span
+/ end mobile navigation trigger
+%section.container.preheader
+  / this is the login for the user
+  %nav.user.clearfix
+    - if user_signed_in?
+      = link_to destroy_user_session_path, :method=>'delete' do
+        %i.icon-user
+        Logout
+    - else
+      = link_to new_user_session_path do
+        %i.icon-user
+        Login
+
+    - if user_signed_in?
+      = link_to edit_user_registration_path do
+        %i.icon-user
+        Edit account
+      - if current_user.has_role? :admin
+        = link_to 'Admin', users_path
+  / close user nav
+  .search-wrapper
+    %form.search{:action => "someaction.php", :method => "post"}
+      #search-trigger Search:
+      %input#search-box{:placeholder => "search + enter", :type => "text"}/
+  .phone
+    -# %a.tele{:href => "tel:8135551234"} 813.555.1234
+    %a{:href => 'mailto:contact@ragafied.com'} contact@ragafied.com
+  %ul.social
+    -# %li
+      -# %a.socicon.small.rss{"data-placement" => "bottom", :href => "#", :title => "Subscribe to our RSS feed"}
+    %li
+      %a.socicon.small.facebook{"data-placement" => "bottom", :href => "#", :title => "Follow us on Facebook"}
+    -# %li
+      -# %a.socicon.small.twitterbird{"data-placement" => "bottom", :href => "#", :title => "Follow us on Twitter"}
+    -# %li
+      -# %a.socicon.small.linkedin{"data-placement" => "bottom", :href => "#", :title => "Follow us on LinkedIn"}
+    -# %li
+      -# %a.socicon.small.dribbble{"data-placement" => "bottom", :href => "#", :title => "Follow us on dribble"}
+    -# %li
+      -# %a.socicon.small.vimeo{"data-placement" => "bottom", :href => "#", :title => "Follow us on Vimeo"}
+/ begin .header
+%header.header.clearfix
+  %img.print.logo{:alt => "Ragafied", :src => "/ragafied-print.png"}
+  .container
+    / begin #main_menu
+    %nav#main_menu
+      %ul.accordmobile
+        %li.active
+          %a{:href => "/"} Home
         %li
-          - if user_signed_in?
-            = link_to 'Logout', destroy_user_session_path, :method=>'delete'
-          - else
-            = link_to 'Login', new_user_session_path
-          - if user_signed_in?
-            = link_to 'Edit account', edit_user_registration_path
-            - if current_user.has_role? :admin
-              = link_to 'Admin', users_path
+          %a{:href => "#"} Contact
+        %li
+          %a{:href => "#"} Instructions
+        %li
+          %a{:href => "#"} About us
+    / close / #main_menu
+    / begin #logo
+    #logo.noPrint
+      %a{:href => "index.html"}
+        %img{:alt => "", :src => "/ragafied.png"}/
+        %em Ragafied
+        / effing ie7 support
+    / end #logo
+  / close / .container
+/ close /.header
